@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz Cumpleaños Natita 💖</title>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<style>
+body{
+margin:0;
+font-family:'Comic Sans MS', cursive;
+background:linear-gradient(135deg,#ffd6e8,#fff0f7);
+text-align:center;
+overflow:hidden;
+}
+
+.screen{display:none;padding:20px;}
+.active{display:block;}
+
+button{
+padding:12px 22px;
+margin:10px;
+border:none;
+border-radius:25px;
+font-size:18px;
+cursor:pointer;
+background:#ff7ac3;
+color:white;
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+.gift{
+width:140px;
+height:140px;
+background:#ffc0cb;
+margin:20px auto;
+border-radius:15px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:60px;
+cursor:pointer;
+transition:transform 0.3s;
+}
+
+.gift:active{
+transform:scale(1.1);
+}
+
+.hearts{
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+background-image:url('https://i.imgur.com/9Xn4kKf.png');
+background-size:200px;
+opacity:0.08;
+pointer-events:none;
+}
+
+img{
+max-width:85%;
+border-radius:20px;
+margin-top:15px;
+}
+
+.fade{
+animation:fadein 1s ease-in;
+}
+
+@keyframes fadein{
+from{opacity:0;}
+to{opacity:1;}
+}
+</style>
+</head>
+<body>
+
+<div class="hearts"></div>
+
+<!-- Pantalla 1 -->
+<div id="screen1" class="screen active fade">
+<h2>Feliz cumpleaños Natita de leches 💖</h2>
+<h3>02/03/07</h3>
+<button onclick="nextScreen(2)">Entrar</button>
+</div>
+
+<!-- Pantalla 2 -->
+<div id="screen2" class="screen fade">
+<h2>Pica 3 veces para abrir 🎁</h2>
+<div class="gift" onclick="openGift()">🎁</div>
+<p id="clickText"></p>
+</div>
+
+<!-- Pantalla 3 -->
+<div id="screen3" class="screen fade">
+<h2>¿Quieres intentarlo? 💕</h2>
+<img src="https://i.imgur.com/jQ9Z6W0.png" alt="cabrita">
+<br>
+<button onclick="yes()">Sí</button>
+<button onclick="no()">No</button>
+<p id="noText"></p>
+</div>
+
+<script>
+let clicks=0;
+let noClicks=0;
+
+function nextScreen(num){
+document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+document.getElementById('screen'+num).classList.add('active');
+}
+
+function openGift(){
+clicks++;
+document.getElementById('clickText').innerText="Clicks: "+clicks+"/3";
+if(clicks>=3){
+nextScreen(3);
+}
+}
+
+function yes(){
+confetti({particleCount:150,spread:100});
+document.body.innerHTML=`
+<div style="padding:30px;">
+<h1>💖 Feliz cumpleaños 💖</h1>
+<p style="font-size:20px;">
+Te extraño mucho…<br>
+Te amo demasiado.<br>
+Hoy más que nunca quisiera abrazarte.<br>
+Espero que este día sea tan hermoso como tú.
+</p>
+</div>`;
+}
+
+function no(){
+noClicks++;
+
+let frases=[
+"¿Segura que no? 🥺",
+"¿De verdad que no? 😢",
+"Piénsalo bien…",
+"Última oportunidad 😭",
+"Ya sabía que dirías que sí 😌"
+];
+
+if(noClicks<5){
+document.getElementById('noText').innerText=frases[noClicks-1];
+}else{
+confetti({particleCount:200,spread:120});
+document.body.innerHTML="<h1 style='padding:40px;'>🎉 Ya regresamos ni modo, ya eres mi novia de nuevo 😌💖</h1>";
+}
+}
+</script>
+
+</body>
+</html>
