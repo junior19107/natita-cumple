@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Feliz Cumpleaños 💖</title>
-
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <style>
@@ -14,7 +13,6 @@ font-family:'Comic Sans MS', cursive;
 background:linear-gradient(135deg,#ffd6e8,#fff0f7);
 text-align:center;
 color:#444;
-overflow:hidden;
 }
 
 .screen{display:none;padding:20px;}
@@ -29,7 +27,6 @@ font-size:18px;
 cursor:pointer;
 background:#ff7ac3;
 color:white;
-box-shadow:0 4px 10px rgba(0,0,0,0.2);
 }
 
 .gift{
@@ -43,22 +40,12 @@ align-items:center;
 justify-content:center;
 font-size:60px;
 cursor:pointer;
-transition:transform 0.3s;
 }
-
-.gift:active{transform:scale(1.1);}
 
 img{
-max-width:85%;
+max-width:90%;
 border-radius:20px;
 margin-top:15px;
-}
-
-.fade{animation:fadein 1s ease-in;}
-
-@keyframes fadein{
-from{opacity:0;}
-to{opacity:1;}
 }
 </style>
 </head>
@@ -69,24 +56,27 @@ to{opacity:1;}
 </audio>
 
 <!-- Pantalla 1 -->
-<div id="screen1" class="screen active fade">
-<img src="2024113_201446.jpg">
+<div id="screen1" class="screen active">
+<img src="./2024113_201446.jpg" alt="foto">
 <h2>Feliz cumpleaños Natita de leches 💖</h2>
 <h3>02/03/07</h3>
 <button onclick="start()">Entrar</button>
 </div>
 
 <!-- Pantalla 2 -->
-<div id="screen2" class="screen fade">
+<div id="screen2" class="screen">
 <h2>Pica 3 veces para abrir 🎁</h2>
 <div class="gift" onclick="openGift()">🎁</div>
 <p id="clickText"></p>
 </div>
 
 <!-- Pantalla 3 -->
-<div id="screen3" class="screen fade">
+<div id="screen3" class="screen">
 <h2>¿Quieres intentarlo? 💕</h2>
-<img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee">
+
+<img src="https://images.unsplash.com/photo-1517849845537-4d257902454a" alt="cabrita">
+<img src="https://images.unsplash.com/photo-1525310072745-f49212b5ac6d" alt="flores">
+
 <br>
 <button onclick="yes()">Sí</button>
 <button onclick="no()">No</button>
@@ -98,7 +88,9 @@ let clicks=0;
 let noClicks=0;
 
 function start(){
-document.getElementById("music").play();
+let music=document.getElementById("music");
+music.volume=0.5;
+music.play();
 nextScreen(2);
 }
 
@@ -116,17 +108,19 @@ nextScreen(3);
 }
 
 function yes(){
-confetti({particleCount:250,spread:120});
+confetti({particleCount:300,spread:150});
 document.body.innerHTML=`
 <div style="padding:30px;">
 <h1>💖 Feliz cumpleaños mi niña hermosa 💖</h1>
 <p style="font-size:18px; line-height:1.6;">
-Hoy no solo cumple años alguien especial…<br><br>
-Hoy cumple años la persona que marcó mi corazón de una forma que nadie más lo ha hecho.<br><br>
-Te extraño más de lo que imaginas, más de lo que puedo explicar con palabras.<br>
-Te amo muchísimo, y aunque a veces la vida cambie las cosas, lo que siento por ti sigue siendo real.<br><br>
-Deseo que este nuevo año de tu vida esté lleno de metas cumplidas, sueños alcanzados, sonrisas sinceras y momentos que te hagan sentir orgullosa de ti misma.<br><br>
-Que logres todo lo que te propongas, que nunca dudes de lo valiosa que eres, y que siempre recuerdes que tienes a alguien que te quiere con el corazón completo.<br><br>
+Hoy cumple años la persona que marcó mi corazón.<br><br>
+Te extraño muchísimo… más de lo que imaginas.<br>
+Te amo con todo lo que soy.<br><br>
+Deseo que este año cumplas todas tus metas,<br>
+que alcances cada sueño,<br>
+que nunca dudes de lo increíble que eres,<br>
+y que la vida te regale momentos tan hermosos como tu sonrisa.<br><br>
+Siempre voy a querer verte feliz.<br>
 Feliz cumpleaños 💕✨
 </p>
 </div>`;
@@ -144,7 +138,7 @@ let frases=[
 ];
 
 if(noClicks<5){
-document.getElementById('noText').innerText=frases[noClicks-1];
+document.getElementById('noText').innerText=frases[noClicks-1]+"  (Pica al Sí para que veas el mensaje 💕)";
 }else{
 confetti({particleCount:300,spread:150});
 document.body.innerHTML="<h1 style='padding:40px;'>🎉 Ya regresamos ni modo, ya eres mi novia de nuevo 😌💖</h1>";
