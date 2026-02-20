@@ -25,20 +25,20 @@ border:none;
 border-radius:25px;
 font-size:18px;
 cursor:pointer;
-background:#ff7ac3;
+background:#ff6fb5;
 color:white;
 }
 
 .gift{
-width:140px;
-height:140px;
+width:150px;
+height:150px;
 background:#ffc0cb;
 margin:20px auto;
 border-radius:15px;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:60px;
+font-size:70px;
 cursor:pointer;
 }
 
@@ -51,16 +51,17 @@ margin-top:15px;
 </head>
 <body>
 
-<audio id="music" loop>
-<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_2b6d13f7f2.mp3?filename=romantic-piano-110624.mp3" type="audio/mpeg">
-</audio>
-
 <!-- Pantalla 1 -->
 <div id="screen1" class="screen active">
-<img src="./2024113_201446.jpg" alt="foto">
-<h2>Feliz cumpleaños Natita de leches 💖</h2>
-<h3>02/03/07</h3>
-<button onclick="start()">Entrar</button>
+<img src="./20240113_201446.jpg">
+<h2>Feliz cumpleaños mi amor 💖</h2>
+<p style="font-size:18px; line-height:1.6;">
+Hoy cumple años la persona que marcó mi corazón de una forma que nadie más ha podido hacerlo.<br><br>
+Deseo que este nuevo año esté lleno de metas cumplidas, sueños realizados y momentos que te hagan sentir orgullosa de lo increíble que eres.<br><br>
+Que nunca olvides lo valiosa que eres, lo fuerte que eres y lo especial que siempre serás para mí.<br><br>
+Te extraño más de lo que imaginas y te amo más de lo que las palabras pueden explicar.
+</p>
+<button onclick="nextScreen(2)">Abrir sorpresa 🎁</button>
 </div>
 
 <!-- Pantalla 2 -->
@@ -72,12 +73,22 @@ margin-top:15px;
 
 <!-- Pantalla 3 -->
 <div id="screen3" class="screen">
-<h2>¿Quieres intentarlo? 💕</h2>
+<img src="./IMG_7230.jpg">
+<h2>💖 Feliz cumpleaños 💖</h2>
+<p style="font-size:18px; line-height:1.6;">
+Hoy no solo celebramos un año más de tu vida… celebramos la existencia de alguien que ilumina el mundo con su sonrisa.<br><br>
+Que cada meta que te propongas la cumplas.<br>
+Que cada sueño que tengas se haga realidad.<br>
+Que nunca falten motivos para sonreír.<br><br>
+Siempre voy a querer verte feliz.<br>
+Siempre voy a quererte con todo mi corazón.
+</p>
+<button onclick="nextScreen(4)">Siguiente página ➜</button>
+</div>
 
-<img src="https://images.unsplash.com/photo-1517849845537-4d257902454a" alt="cabrita">
-<img src="https://images.unsplash.com/photo-1525310072745-f49212b5ac6d" alt="flores">
-
-<br>
+<!-- Pantalla 4 -->
+<div id="screen4" class="screen">
+<h2>¿Quieres intentarlo de nuevo? 💕</h2>
 <button onclick="yes()">Sí</button>
 <button onclick="no()">No</button>
 <p id="noText"></p>
@@ -85,14 +96,7 @@ margin-top:15px;
 
 <script>
 let clicks=0;
-let noClicks=0;
-
-function start(){
-let music=document.getElementById("music");
-music.volume=0.5;
-music.play();
-nextScreen(2);
-}
+let noCount=0;
 
 function nextScreen(num){
 document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
@@ -108,40 +112,21 @@ nextScreen(3);
 }
 
 function yes(){
-confetti({particleCount:300,spread:150});
+confetti({particleCount:250,spread:120});
 document.body.innerHTML=`
-<div style="padding:30px;">
-<h1>💖 Feliz cumpleaños mi niña hermosa 💖</h1>
-<p style="font-size:18px; line-height:1.6;">
-Hoy cumple años la persona que marcó mi corazón.<br><br>
-Te extraño muchísimo… más de lo que imaginas.<br>
-Te amo con todo lo que soy.<br><br>
-Deseo que este año cumplas todas tus metas,<br>
-que alcances cada sueño,<br>
-que nunca dudes de lo increíble que eres,<br>
-y que la vida te regale momentos tan hermosos como tu sonrisa.<br><br>
-Siempre voy a querer verte feliz.<br>
-Feliz cumpleaños 💕✨
-</p>
+<div style="padding:40px;">
+<h1>🍀 Manda un trébol de 4 hojas en Insta 🍀</h1>
 </div>`;
 }
 
 function no(){
-noClicks++;
+noCount++;
 
-let frases=[
-"¿Segura que no? 🥺",
-"¿De verdad que no? 😢",
-"Piénsalo bien…",
-"Última oportunidad 😭",
-"Ya sabía que dirías que sí 😌"
-];
-
-if(noClicks<5){
-document.getElementById('noText').innerText=frases[noClicks-1]+"  (Pica al Sí para que veas el mensaje 💕)";
+if(noCount<5){
+document.getElementById('noText').innerText="¿Estás segura?";
 }else{
 confetti({particleCount:300,spread:150});
-document.body.innerHTML="<h1 style='padding:40px;'>🎉 Ya regresamos ni modo, ya eres mi novia de nuevo 😌💖</h1>";
+document.body.innerHTML="<h1 style='padding:40px;'>😌 Ya sabía que dirías que sí 💖</h1>";
 }
 }
 </script>
