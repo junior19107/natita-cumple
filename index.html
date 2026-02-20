@@ -54,13 +54,8 @@ margin-top:15px;
 <!-- Pantalla 1 -->
 <div id="screen1" class="screen active">
 <img src="./20240113_201446.jpg">
-<h2>Feliz cumpleaños mi amor 💖</h2>
-<p style="font-size:18px; line-height:1.6;">
-Hoy cumple años la persona que marcó mi corazón de una forma que nadie más ha podido hacerlo.<br><br>
-Deseo que este nuevo año esté lleno de metas cumplidas, sueños realizados y momentos que te hagan sentir orgullosa de lo increíble que eres.<br><br>
-Que nunca olvides lo valiosa que eres, lo fuerte que eres y lo especial que siempre serás para mí.<br><br>
-Te extraño más de lo que imaginas y te amo más de lo que las palabras pueden explicar.
-</p>
+<h2>Feliz cumpleaños Natita de leche 💖</h2>
+<h3>2/03/07</h3>
 <button onclick="nextScreen(2)">Abrir sorpresa 🎁</button>
 </div>
 
@@ -74,21 +69,24 @@ Te extraño más de lo que imaginas y te amo más de lo que las palabras pueden 
 <!-- Pantalla 3 -->
 <div id="screen3" class="screen">
 <img src="./IMG_7230.jpg">
-<h2>💖 Feliz cumpleaños 💖</h2>
+<h2>💖 Feliz 19 mi amor 💖</h2>
 <p style="font-size:18px; line-height:1.6;">
-Hoy no solo celebramos un año más de tu vida… celebramos la existencia de alguien que ilumina el mundo con su sonrisa.<br><br>
-Que cada meta que te propongas la cumplas.<br>
-Que cada sueño que tengas se haga realidad.<br>
-Que nunca falten motivos para sonreír.<br><br>
-Siempre voy a querer verte feliz.<br>
-Siempre voy a quererte con todo mi corazón.
+Hoy celebramos 19 años de una persona increíble, fuerte, hermosa y llena de luz.<br><br>
+Deseo con todo mi corazón que este nuevo año esté lleno de bendiciones, oportunidades y metas cumplidas.<br><br>
+Que cada sueño que tengas se haga realidad, que cada paso que des te acerque más a la vida que deseas.<br><br>
+Que nunca dudes de lo valiosa que eres, de lo capaz que eres y de lo mucho que puedes lograr.<br><br>
+Te deseo lo mejor del mundo, felicidad infinita, éxito en todo lo que emprendas y amor verdadero en cada momento de tu vida.<br><br>
+Siempre voy a querer verte triunfar y sonreír.<br>
+Feliz cumpleaños, que tus 19 estén llenos de magia ✨💖
 </p>
 <button onclick="nextScreen(4)">Siguiente página ➜</button>
 </div>
 
 <!-- Pantalla 4 -->
 <div id="screen4" class="screen">
-<h2>¿Quieres intentarlo de nuevo? 💕</h2>
+<h2>Perdón por el atrevimiento…</h2>
+<p style="font-size:20px;">Tengo una pregunta para ti 💭</p>
+<h3>¿Podemos intentarlo de nuevo?</h3>
 <button onclick="yes()">Sí</button>
 <button onclick="no()">No</button>
 <p id="noText"></p>
@@ -115,18 +113,26 @@ function yes(){
 confetti({particleCount:250,spread:120});
 document.body.innerHTML=`
 <div style="padding:40px;">
-<h1>🍀 Manda un trébol de 4 hojas en Insta 🍀</h1>
+<h1>🍀 Mándame un trébol de 4 hojas 🍀</h1>
 </div>`;
 }
 
 function no(){
 noCount++;
 
+let frases=[
+"¿Estás completamente segura?",
+"¿Segura de verdad?",
+"¿Lo pensaste bien?",
+"¿No quieres reconsiderarlo?",
+"¿Última respuesta?"
+];
+
 if(noCount<5){
-document.getElementById('noText').innerText="¿Estás segura?";
+document.getElementById('noText').innerText=frases[noCount-1];
 }else{
 confetti({particleCount:300,spread:150});
-document.body.innerHTML="<h1 style='padding:40px;'>😌 Ya sabía que dirías que sí 💖</h1>";
+document.body.innerHTML="<h1 style='padding:40px;'>💖 Ya sabía que dirías que sí 😌</h1>";
 }
 }
 </script>
